@@ -1,0 +1,1 @@
+INSERT INTO public.libro (descripcion, nro_paginas, titulo)VALUES('Descripcion 1', 222, 'Libro 1');
