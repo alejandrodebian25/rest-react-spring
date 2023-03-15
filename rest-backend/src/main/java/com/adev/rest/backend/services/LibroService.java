@@ -6,9 +6,10 @@ import org.springframework.http.ResponseEntity;
 
 public interface LibroService {
     public ResponseEntity<RestResponse> getAll();
+    
     public ResponseEntity<RestResponse> createLibro(LibroRequest libroRequest);
 
-    public ResponseEntity<RestResponse> updateLibro(LibroRequest libroRequest);
+    public ResponseEntity<RestResponse> updateLibro(Long id,LibroRequest libroRequest);
 
 
 }

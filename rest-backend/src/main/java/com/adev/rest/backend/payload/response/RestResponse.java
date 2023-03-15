@@ -28,6 +28,12 @@ public class RestResponse {
         this.data=data;
     }
 
+    public void successUpdated (Object data){
+        this.status= AppConstants.STATUS.SUCCESS;
+        this.message="Registro actualizado con éxito";
+        this.data=data;
+    }
+
     public void errorArgumentNotValid(Object errors){
         this.status= AppConstants.STATUS.FAIL;
         this.message="Campo(s) no valido(s)";

@@ -1,6 +1,7 @@
 package com.adev.rest.backend.services;
 
 import com.adev.rest.backend.entities.LibroEntity;
+import com.adev.rest.backend.exceptions.ResourceNotFoundException;
 import com.adev.rest.backend.payload.request.LibroRequest;
 import com.adev.rest.backend.payload.response.RestResponse;
 import com.adev.rest.backend.repositories.LibroRepository;
@@ -41,14 +42,16 @@ public class LibroServiceImpl implements LibroService{
     }
 
     @Override
-    public ResponseEntity<RestResponse> updateLibro(LibroRequest libroRequest) {
-        LibroEntity libroEntity =new LibroEntity();
-        BeanUtils.copyProperties(libroRequest,libroEntity);
-        libroRepository.save(libroEntity);
+    public ResponseEntity<RestResponse> updateLibro(Long id,LibroRequest libroRequest) {
+        LibroEntity libro = libroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Libro", "ID", id));
 
-        //RestResponse response = new RestResponse();
-        restResponse.successCreate(libroEntity);
-        return new ResponseEntity<RestResponse>(restResponse,HttpStatus.OK);
+        libro.setDescripcion(libroRequest.getDescripcion());
+        libro.setTitulo(libroRequest.getTitulo());
+        libro.setNroPaginas(libroRequest.getNroPaginas());
+
+        libroRepository.save(libro);
+        restResponse.successUpdated(libro);
+        return  new ResponseEntity<RestResponse>(restResponse,HttpStatus.OK);
     }
 
 }

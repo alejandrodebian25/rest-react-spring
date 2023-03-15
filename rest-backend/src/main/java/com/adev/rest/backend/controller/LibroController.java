@@ -27,7 +27,7 @@ public class LibroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RestResponse> update(@Valid @RequestBody LibroRequest libroRequest){
-        return service.updateLibro(libroRequest);
+    public ResponseEntity<RestResponse> update(@PathVariable(name = "id") Long id,@Valid @RequestBody LibroRequest libroRequest){
+        return service.updateLibro(id,libroRequest);
     }
 }
