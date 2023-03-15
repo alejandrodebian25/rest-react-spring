@@ -31,4 +31,12 @@ public class RestControllerExceptionHandler {
         restResponse.errorArgumentNotValid(response);
         return new ResponseEntity<RestResponse>(restResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseBody
+    public ResponseEntity<RestResponse> resolveException(ResourceNotFoundException exception) {
+        RestResponse apiResponse = exception.getRestResponse();
+        return new ResponseEntity<RestResponse>(apiResponse, HttpStatus.NOT_FOUND);
+    }
+
 }
