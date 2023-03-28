@@ -11,5 +11,7 @@ public interface LibroService {
 
     public ResponseEntity<RestResponse> updateLibro(Long id,LibroRequest libroRequest);
 
+    public ResponseEntity<RestResponse> delete(Long id);
 
+    public ResponseEntity<RestResponse> getLibroById(Long id);
 }

@@ -5,7 +5,6 @@ import com.adev.rest.backend.exceptions.ResourceNotFoundException;
 import com.adev.rest.backend.payload.request.LibroRequest;
 import com.adev.rest.backend.payload.response.RestResponse;
 import com.adev.rest.backend.repositories.LibroRepository;
-import com.adev.rest.backend.util.AppConstants;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,14 +19,13 @@ public class LibroServiceImpl implements LibroService{
     @Autowired
     private LibroRepository libroRepository;
 
-    @Autowired
-    private RestResponse restResponse;
-
     @Override
     public ResponseEntity<RestResponse> getAll() {
         List<LibroEntity> libros = libroRepository.findAll();
-        restResponse.successList(libros);
-        return new ResponseEntity<RestResponse>(restResponse, HttpStatus.OK);
+
+        RestResponse response=new RestResponse();
+        response.list(libros);
+        return new ResponseEntity<RestResponse>(response, HttpStatus.OK);
     }
 
     @Override
@@ -36,22 +34,43 @@ public class LibroServiceImpl implements LibroService{
         BeanUtils.copyProperties(libroRequest,libroEntity);
         libroRepository.save(libroEntity);
 
-        //RestResponse response = new RestResponse();
-        restResponse.successCreate(libroEntity);
-        return new ResponseEntity<RestResponse>(restResponse,HttpStatus.OK);
+        RestResponse response=new RestResponse();
+        response.created(libroEntity);
+        return new ResponseEntity<RestResponse>(response,HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<RestResponse> updateLibro(Long id,LibroRequest libroRequest) {
+        LibroEntity libroEntity = libroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Libro", "ID", id));
+
+        libroEntity.setDescripcion(libroRequest.getDescripcion());
+        libroEntity.setTitulo(libroRequest.getTitulo());
+        libroEntity.setNroPaginas(libroRequest.getNroPaginas());
+        libroRepository.save(libroEntity);
+
+        RestResponse response=new RestResponse();
+        response.updated(libroEntity);
+        return  new ResponseEntity<RestResponse>(response,HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<RestResponse> delete(Long id) {
+        LibroEntity libro = libroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Libro", "ID", id));
+        libroRepository.deleteById(id);
+
+        RestResponse response=new RestResponse();
+        response.deleted();
+        return  new ResponseEntity<RestResponse>(response,HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<RestResponse> getLibroById(Long id) {
         LibroEntity libro = libroRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Libro", "ID", id));
 
-        libro.setDescripcion(libroRequest.getDescripcion());
-        libro.setTitulo(libroRequest.getTitulo());
-        libro.setNroPaginas(libroRequest.getNroPaginas());
-
-        libroRepository.save(libro);
-        restResponse.successUpdated(libro);
-        return  new ResponseEntity<RestResponse>(restResponse,HttpStatus.OK);
+        RestResponse response=new RestResponse();
+        response.resourceById("libro",libro);
+        return  new ResponseEntity<RestResponse>(response,HttpStatus.OK);
     }
+
 
 }

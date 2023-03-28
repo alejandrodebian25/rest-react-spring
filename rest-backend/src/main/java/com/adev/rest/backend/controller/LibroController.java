@@ -30,4 +30,13 @@ public class LibroController {
     public ResponseEntity<RestResponse> update(@PathVariable(name = "id") Long id,@Valid @RequestBody LibroRequest libroRequest){
         return service.updateLibro(id,libroRequest);
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RestResponse> delete(@PathVariable(name = "id") Long id){
+        return service.delete(id);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<RestResponse> getLibroById(@PathVariable(name = "id") Long id){
+        return service.getLibroById(id);
+    }
+
 }
