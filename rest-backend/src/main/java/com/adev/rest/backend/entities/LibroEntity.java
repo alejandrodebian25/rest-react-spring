@@ -25,7 +25,6 @@ public class LibroEntity implements Serializable {
     @Column(name = "nro_paginas")
     private Integer nroPaginas;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "autor_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private AutorEntity autor;
 }
