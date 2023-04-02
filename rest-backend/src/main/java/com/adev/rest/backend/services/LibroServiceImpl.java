@@ -24,7 +24,7 @@ public class LibroServiceImpl implements LibroService{
         List<LibroEntity> libros = libroRepository.findAll();
 
         RestResponse response=new RestResponse();
-        response.list(libros);
+        response.list("libros",libros);
         return new ResponseEntity<RestResponse>(response, HttpStatus.OK);
     }
 

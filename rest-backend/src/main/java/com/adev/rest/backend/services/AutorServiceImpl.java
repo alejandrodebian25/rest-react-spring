@@ -21,7 +21,7 @@ public class AutorServiceImpl implements AutorService{
         List<AutorEntity> autores = autorRepository.findAll();
 
         RestResponse response=new RestResponse();
-        response.list(autores);
+        response.list("autores",autores);
         return new ResponseEntity<RestResponse>(response, HttpStatus.OK);
 
     }
