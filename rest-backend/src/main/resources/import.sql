@@ -2,3 +2,17 @@ INSERT INTO public.autor (nombre, apellido, edad,nacionalidad)VALUES('Alejandro'
 
 INSERT INTO public.libro (descripcion, nro_paginas, titulo,autor_id)VALUES('Descripcion 1', 222, 'Libro 1',1);
 
+--Hospitakl
+
+INSERT INTO public.hospital (codigo, descripcion, direccion)VALUES('COSSMIL','Corporación del Seguro Social Militar (COSSMIL)','Av. Saavedra #1809');
+INSERT INTO public.hospital (codigo, descripcion, direccion)VALUES('CLINICAS','Hospital de Clínicas','Av. Saavedra, Nº 2245, Zona Miraflores');
+INSERT INTO public.hospital (codigo, descripcion, direccion)VALUES('ARCO-IRIS','Hospital Arco Iris','Calle General Monje, a dos cuadras de la Plaza Villarroel');
+
+--servicios
+INSERT INTO public.servicio (codigo, descripcion)VALUES('Emergencias','Emergencia 24 horas');
+INSERT INTO public.servicio (codigo, descripcion)VALUES('Endoscopia','Endoscopia y Endoscopia pediátrica');
+INSERT INTO public.servicio (codigo, descripcion)VALUES('Cuidados','Cuidados Intensivos Neonatales');
+
+
+INSERT INTO public.hospital_servicio (servicio_id, hospital_id)VALUES(1,1);
+INSERT INTO public.hospital_servicio (servicio_id, hospital_id)VALUES(2,1);
