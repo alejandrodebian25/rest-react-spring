@@ -20,10 +20,13 @@ public class RestResponse {
     private Object errors;
 
     /*============= Metodos de repuesta OK*/
-    public void list (Object data){
+    public void list (String keyData, Object data){
         this.status= AppConstants.STATUS.SUCCESS;
         this.message="Registros encontrados.";
-        this.data=data;
+
+        Map<String, Object> dataAux = new HashMap<>();
+        dataAux.put(keyData,data);
+        this.data=dataAux;
     }
 
     public void created (Object data){
