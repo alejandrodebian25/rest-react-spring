@@ -3,6 +3,9 @@ package com.adev.rest.backend.payload.request;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
+
+@Data
 public class SalaRequest {
     
     private Long id;

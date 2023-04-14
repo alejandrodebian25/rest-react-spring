@@ -1,6 +1,5 @@
 package com.adev.rest.backend.repositories;
 
-import com.adev.rest.backend.entities.AutorEntity;
 import com.adev.rest.backend.entities.HospitalEntity;
 import org.springframework.data.repository.CrudRepository;
 
