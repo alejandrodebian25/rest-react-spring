@@ -15,4 +15,11 @@ INSERT INTO public.servicio (codigo, descripcion)VALUES('Cuidados','Cuidados Int
 
 
 INSERT INTO public.hospital_servicio (servicio_id, hospital_id)VALUES(1,1);
-INSERT INTO public.hospital_servicio (servicio_id, hospital_id)VALUES(2,1);
+INSERT INTO public.hospital_servicio (servicio_id, hospital_id)VALUES(1,1);
+INSERT INTO public.hospital_servicio (servicio_id, hospital_id)VALUES(3,1);
+
+
+INSERT INTO public.sala (codigo, descripcion, ubicacion,hospital_id,servicio_id)VALUES('SALA A','Sala A-1','Piso 1', 1, 1);
+INSERT INTO public.sala (codigo, descripcion, ubicacion,hospital_id,servicio_id)VALUES('SALA B','Sala B-1','Piso 1', 1, 2);
+INSERT INTO public.sala (codigo, descripcion, ubicacion,hospital_id,servicio_id)VALUES('SALA C','Sala C-1','Piso 1', 1, 3);
+-- INSERT INTO public.sala (servicio_id, hospital_id)VALUES(2,1);
