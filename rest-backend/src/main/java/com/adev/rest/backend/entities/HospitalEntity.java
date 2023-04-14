@@ -3,6 +3,7 @@ package com.adev.rest.backend.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,10 +24,15 @@ public class HospitalEntity implements Serializable {
     @Column(length = 100)
     private String descripcion;
 
+    @JsonIgnore
     @Column(length = 150)
     private String direccion;
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "hospital")
     private List<HospitalServicioEntity> hospitalServicio;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "hospital")
+    private List<SalaEntity> salas;
 }

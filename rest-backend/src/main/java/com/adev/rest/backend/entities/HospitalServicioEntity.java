@@ -1,6 +1,6 @@
 package com.adev.rest.backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,12 +17,12 @@ public class HospitalServicioEntity implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @JsonIgnoreProperties({"hospitalServicio","servicio","id"})
+    @JsonIgnore
     @ManyToOne(optional = true,  fetch = FetchType.EAGER)
     @JoinColumn (name = "hospital_id", referencedColumnName = "id")
     private HospitalEntity hospital;
 
-    @JsonIgnoreProperties({"hospitalServicio"})
+    @JsonIgnore
     @ManyToOne(optional = true,  fetch = FetchType.EAGER)
     @JoinColumn (name = "servicio_id", referencedColumnName = "id")
     private ServicioEntity servicio;
