@@ -18,12 +18,14 @@ public class ServicioServiceImpl implements ServicioService {
     @Autowired
     private ServicioRepository repository;
 
+    RestResponse response;
+
     @Override
     public ResponseEntity<RestResponse> getAll() {
 
         List<ServicioEntity> servicios = repository.findAll();
 
-        RestResponse response = new RestResponse();
+        response = new RestResponse();
         response.list("servicios", servicios);
         return new ResponseEntity<RestResponse>(response, HttpStatus.OK);
     }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
@@ -24,10 +25,11 @@ public class ServicioEntity implements Serializable {
     @Column(length = 100)
     private String descripcion;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "servicio_id")
-//    private List<HospitalServicioEntity> hospitalServicio;
-
+    @JsonIgnore  
     @OneToMany(mappedBy = "servicio")
     private List<HospitalServicioEntity> hospitalServicio;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "servicio")
+    private List<SalaEntity> salas;
 }
