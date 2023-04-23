@@ -63,4 +63,9 @@ public class RestResponse {
         this.errors=errors;
     }
 
+    public void listFail (){
+        this.status= AppConstants.STATUS.FAIL;
+        this.message="Registros no encontrados.";
+    }
+
 }
