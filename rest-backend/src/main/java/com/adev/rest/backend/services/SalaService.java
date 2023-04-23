@@ -15,4 +15,6 @@ public interface SalaService {
     public ResponseEntity<RestResponse> delete(Long id);
 
     public ResponseEntity<RestResponse> getResourceById(Long id);
+
+    public ResponseEntity<RestResponse> obtenerSalasPorServicioPorHospital(Long idHospital, Long idServicio );
 }

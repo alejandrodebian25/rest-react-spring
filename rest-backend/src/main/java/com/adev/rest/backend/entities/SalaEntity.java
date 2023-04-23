@@ -37,9 +37,11 @@ public class SalaEntity implements Serializable{
     @Column(length = 50)
     private String ubicacion;
     
+    @JsonIgnore
     @ManyToOne(optional = true,  fetch = FetchType.EAGER)
     private HospitalEntity hospital;
-
+    
+    @JsonIgnore
     @ManyToOne(optional = true,  fetch = FetchType.EAGER)
     private ServicioEntity servicio ;
 

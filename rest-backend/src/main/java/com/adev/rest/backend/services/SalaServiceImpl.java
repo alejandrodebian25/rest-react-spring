@@ -53,4 +53,18 @@ public class SalaServiceImpl implements SalaService {
         throw new UnsupportedOperationException("Unimplemented method 'getResourceById'");
     }
 
+    @Override
+    public ResponseEntity<RestResponse> obtenerSalasPorServicioPorHospital(Long idHospital, Long idServicio) {
+        List<SalaEntity> listSalasEntity = repository.obtenerSalasPorHospitalYServicio(idHospital, idServicio);
+        
+        response = new RestResponse();
+        if (listSalasEntity.isEmpty()) {
+            response.listFail();
+        }else{
+            response.list("salas", listSalasEntity);
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
 }
